@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudySync</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>StudySync</span>
+        </div>
+
+        <nav>
+            <button class="nav-btn active" data-section="dashboard">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </button>
+
+            <button class="nav-btn" data-section="schedule">
+                <i class="fa-solid fa-calendar"></i>
+                Schedule
+            </button>
+
+            <button class="nav-btn" data-section="tasks">
+                <i class="fa-solid fa-list-check"></i>
+                Tasks
+            </button>
+
+            <button class="nav-btn" data-section="planner">
+                <i class="fa-solid fa-book-open"></i>
+                Planner
+            </button>
+
+            <button class="nav-btn" data-section="notes">
+                <i class="fa-solid fa-note-sticky"></i>
+                Notes
+            </button>
+
+            <button class="nav-btn" data-section="pomodoro">
+                <i class="fa-solid fa-clock"></i>
+                Pomodoro
+            </button>
+
+            <button class="nav-btn" data-section="analytics">
+                <i class="fa-solid fa-chart-line"></i>
+                Analytics
+            </button>
+
+            <button class="nav-btn" data-section="notifications">
+                <i class="fa-solid fa-bell"></i>
+                Notifications
+            </button>
+
+            <button class="nav-btn" data-section="profile">
+                <i class="fa-solid fa-user"></i>
+                Profile
+            </button>
+        </nav>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Header -->
+        <header class="topbar">
+
+            <div>
+                <h1 id="pageTitle">Home</h1>
+                <p>Manage your academic productivity</p>
+            </div>
+
+            <div class="topbar-actions">
+                <button id="themeToggle">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+
+        </header>
+
+        <!-- Dashboard -->
+        <section id="dashboard" class="page-section active">
+
+            <div class="stats-grid">
+
+                <div class="card stat-card">
+                    <h3>Total Tasks</h3>
+                    <p id="totalTasks">0</p>
+                </div>
+
+                <div class="card stat-card">
+                    <h3>Completed</h3>
+                    <p id="completedTasks">0</p>
+                </div>
+
+                <div class="card stat-card">
+                    <h3>Study Hours</h3>
+                    <p id="studyHours">0</p>
+                </div>
+
+                <div class="card stat-card">
+                    <h3>Productivity</h3>
+                    <p id="productivity">0%</p>
+                </div>
+
+            </div>
+
+            <div class="card">
+                <h2>Weekly Progress</h2>
+                <canvas id="progressChart"></canvas>
+            </div>
+
+        </section>
+
+        <!-- Schedule -->
+        <section id="schedule" class="page-section">
+
+            <div class="card">
+                <h2>Class Schedule</h2>
+
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Subject</th>
+                            <th>Time</th>
+                            <th>Room</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scheduleTableBody"></tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <!-- Tasks -->
+        <section id="tasks" class="page-section">
+
+            <div class="card">
+
+                <div class="section-header">
+                    <h2>Task Manager</h2>
+
+                    <button id="addTaskBtn">
+                        Add Task
+                    </button>
+                </div>
+
+                <div id="taskList"></div>
+
+            </div>
+
+        </section>
+
+        <!-- Planner -->
+        <section id="planner" class="page-section">
+
+            <div class="card">
+
+                <h2>Study Planner</h2>
+
+                <div id="plannerContainer"></div>
+
+            </div>
+
+        </section>
+
+        <!-- Notes -->
+        <section id="notes" class="page-section">
+
+            <div class="card">
+
+                <div class="section-header">
+                    <h2>Notes</h2>
+
+                    <button id="addNoteBtn">
+                        New Note
+                    </button>
+                </div>
+
+                <div id="notesGrid"></div>
+
+            </div>
+
+        </section>
+
+        <!-- Pomodoro -->
+        <section id="pomodoro" class="page-section">
+
+            <div class="card pomodoro-card">
+
+                <h2>Pomodoro Timer</h2>
+
+                <div id="timerDisplay">
+                    25:00
+                </div>
+
+                <div class="timer-controls">
+
+                    <button id="startTimer">
+                        Start
+                    </button>
+
+                    <button id="pauseTimer">
+                        Pause
+                    </button>
+
+                    <button id="resetTimer">
+                        Reset
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Analytics -->
+        <section id="analytics" class="page-section">
+
+            <div class="card">
+
+                <h2>Analytics</h2>
+
+                <canvas id="analyticsChart"></canvas>
+
+            </div>
+
+        </section>
+
+        <!-- Notifications -->
+        <section id="notifications" class="page-section">
+
+            <div class="card">
+
+                <h2>Notifications</h2>
+
+                <div id="notificationList"></div>
+
+            </div>
+
+        </section>
+
+        <!-- Profile -->
+        <section id="profile" class="page-section">
+
+            <div class="card profile-card">
+
+                <img
+                    src="https://ui-avatars.com/api/?name=Student"
+                    alt="Profile"
+                    class="profile-image"
+                >
+
+                <h2>Michella Lavinia Niti</h2>
+
+                <p>Electrical Engineering Student</p>
+
+                <div class="profile-stats">
+
+                    <div>
+                        <h3>Tasks</h3>
+                        <span id="profileTasks">0</span>
+                    </div>
+
+                    <div>
+                        <h3>Notes</h3>
+                        <span id="profileNotes">0</span>
+                    </div>
+
+                    <div>
+                        <h3>Hours</h3>
+                        <span id="profileHours">0</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
